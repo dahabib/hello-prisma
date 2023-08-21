@@ -27,7 +27,37 @@ const createOrUpdateProfile = async (req: Request, res: Response) => {
   }
 };
 
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const result = await UserService.getUsers();
+    return res.send({
+      success: true,
+      message: "Users fetched successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+// get a single user
+
+const getSingleUser = async (req: Request, res: Response) => {
+  try {
+    const result = await UserService.getSingleUser(parseInt(req.params.id));
+    return res.send({
+      success: true,
+      message: "User fetched successfully!",
+      data: result,
+    });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 export const UserController = {
   createUser,
   createOrUpdateProfile,
+  getUsers,
+  getSingleUser,
 };
