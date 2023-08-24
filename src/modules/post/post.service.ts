@@ -68,8 +68,32 @@ const getSinglePost = async (id: number) => {
   return result;
 };
 
+// Update a single post
+const updatePost = async (id: number, data: Partial<Post>): Promise<Post> => {
+  const result = await prisma.post.update({
+    where: {
+      id,
+    },
+    data,
+  });
+  return result;
+};
+
+// Delete a post
+
+const deletePost = async (id: number) => {
+  const result = await prisma.post.delete({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
 export const PostService = {
   createPost,
   getAllPost,
   getSinglePost,
+  deletePost,
+  updatePost,
 };
