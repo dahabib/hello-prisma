@@ -64,6 +64,10 @@ const getSinglePost = async (id: number) => {
     where: {
       id,
     },
+    include: {
+      author: true,
+      category: true,
+    },
   });
   return result;
 };
@@ -75,6 +79,10 @@ const updatePost = async (id: number, data: Partial<Post>): Promise<Post> => {
       id,
     },
     data,
+    include: {
+      author: true,
+      category: true,
+    },
   });
   return result;
 };
